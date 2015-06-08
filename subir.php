@@ -1,11 +1,15 @@
 <?php
 
-$saludo = "Hola";
-
 if (isset($_FILES['myFile'])) {
-    // Example:
+
+	$name = "";
+
+	if (isset($_POST['myName'])) {
+		$name = $_POST['myName'];
+	}	
+    
     move_uploaded_file($_FILES['myFile']['tmp_name'], "uploads/" . $_FILES['myFile']['name']);
-    $respuesta = array("code"=>2000,"message"=>"successful");
+    $respuesta = array("code"=>2000,"message"=>"successful", "name"=>$name);
     echo json_encode($respuesta);
 }
 else{
